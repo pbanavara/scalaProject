@@ -18,6 +18,7 @@ object SubsetSum {
 
   def findSubsets(l: List[Int], target: Int) :Int = {
     val size = 0
+    val lp = l.par
 
     def rotateRight(seq: List[Int], i: Int): List[Int] = {
       val size = seq.size
@@ -40,7 +41,8 @@ object SubsetSum {
     */
     //val y = x.flatten.distinct.filter( p => p.sum >= target).sortBy(_.length)
     val y = l.toSet[Int].subsets.map(_.toList).toList.filter(p => p.sum >= target).sortBy(_.length)
-    if (y.isEmpty) -1 else y.head.length
+    //val y = l.par.toSet.subsets().toList
+    if (y.isEmpty) -1 else y.head.toList.length
   }
 
 }
